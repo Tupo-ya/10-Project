@@ -16,7 +16,7 @@ def hello() -> None:
 def get_active_cell(board: list) -> int:
     result = 0
     for i in board:
-        if i != '':
+        if not i.isdigit():
             result += 1
     
     return result
@@ -40,7 +40,7 @@ def set_cell(board: list, index: int, sim: str) -> list:
 def get_player_move(board: list, player: str) -> list:
     while True:
         pos = int(input('Введите номер клетки: '))-1
-        if pos > 8 or pos < 0 or board[pos] != '':
+        if pos > 8 or pos < 0 or not board[pos].isdigit():
             print('Неверный ввод!')
         else:
             break
@@ -53,7 +53,7 @@ def get_computer_move(board: list, player: str) -> list:
         return board
     while True:
         pos = random.randint(0, 8)
-        if board[pos] == '':
+        if board[pos].isdigit():
             break
     
     return set_cell(board, pos, player)
@@ -80,19 +80,11 @@ def main():
     player_sim = 'X' if int(input('Введите символ для игры: ')) == 1 else 'O'
     pc_sim = 'X' if player_sim == 'O' else 'O'
 
-    global_board = ['', '', '', '', '', '', '', '', '']
+    global_board = ['1', '2', '3', '4', '5', '6', '7', '8', '9']
 
-    random.seed(2)
     while True:
         os.system('cls')
         
-        for i in range(1, 10):
-            if i % 3 == 0:
-                skip = True
-            else:
-                skip = False
-            print(f'{i}', end='\n' if skip else ' ')
-        print('\n')
         draw_board(global_board)
 
         if check_win(global_board, player_sim):
