@@ -83,13 +83,15 @@ def check_win(board: list, player_sim: str) -> bool:
     
     return False
 
-def main():
-    hello()
+def main(one_start):
+    if one_start:
+        hello()
     
     print('За кого будете играть?')
     print('1 - X')
     print('2 - O')
-    player_sim = 'X' if int(input('Введите символ для игры: ')) == 1 else 'O'
+    inp = lambda x: '1' if x == '' else x
+    player_sim = 'X' if int(inp(input('Введите символ для игры: '))) == 1 else 'O'
     pc_sim = 'X' if player_sim == 'O' else 'O'
 
     global_board = ['', '', '', '', '', '', '', '', '']
@@ -116,6 +118,8 @@ def main():
             
 
 if __name__ == '__main__':
+    one_start = True
     while auto_restart:
-        main()
+        main(one_start)
+        one_start = False
         input()
