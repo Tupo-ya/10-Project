@@ -1,6 +1,9 @@
 import random
 import os
 
+# ? Это, чтобы автоматически перезапускать игру
+auto_restart = True
+
 def hello() -> None:
     print('Хелло ин ве гаме Крестики-Нолики!')
     print('Вот так надо вписывать свой ход:')
@@ -113,6 +116,6 @@ def main():
             
 
 if __name__ == '__main__':
-    main()
-    input()
-    
+    while auto_restart:
+        main()
+        input()

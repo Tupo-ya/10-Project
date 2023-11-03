@@ -7,6 +7,8 @@ import os
 from colorama import init, Fore, Style
 init()
 
+# ? Это, чтобы автоматически перезапускать игру
+auto_restart = True
 
 def hello() -> None:
     print('Хелло ин ве гаме Крестики-Нолики!')
@@ -131,6 +133,7 @@ def main():
             
 
 if __name__ == '__main__':
-    main()
-    input()
+    while auto_restart:
+        main()
+        input()
     
